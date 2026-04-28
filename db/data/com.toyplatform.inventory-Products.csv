@@ -1,0 +1,6 @@
+ID;sku;name;description;weight;costPrice;sellingPrice;reorderLevel;safetyStock;isActive
+1;TOY000001;Building Blocks Set;Colorful building blocks for creative play;2.5;15.00;29.99;50;20;true
+2;TOY000002;Plush Teddy Bear;Soft and cuddly teddy bear;0.8;8.00;19.99;100;30;true
+3;TOY000003;Remote Control Car;High-speed RC car with LED lights;1.2;25.00;49.99;30;10;true
+4;TOY000004;Puzzle Set 500pc;Educational jigsaw puzzle;0.5;5.00;12.99;75;25;true
+5;TOY000005;Action Figure Set;Superhero action figures pack of 4;0.6;12.00;24.99;60;20;true

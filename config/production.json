@@ -1,0 +1,17 @@
+{
+  "server": {
+    "port": "${PORT}",
+    "host": "0.0.0.0"
+  },
+  "db": {
+    "kind": "hana"
+  },
+  "features": {
+    "fileUploads": true,
+    "notifications": true,
+    "realTimeTracking": true
+  },
+  "logging": {
+    "level": "info"
+  }
+}

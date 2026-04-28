@@ -1,0 +1,4 @@
+ID;code;name;type;street;city;state;postalCode;country;capacity;isActive;managerName;phone;email
+1;WH001;Main Distribution Center;Main;100 Warehouse Blvd;Los Angeles;California;90001;USA;50000;true;John Manager;+1-310-555-0100;john.manager@toyplatform.com
+2;WH002;East Coast Hub;Regional;250 Industrial Ave;New York;New York;10001;USA;30000;true;Jane Supervisor;+1-212-555-0200;jane.supervisor@toyplatform.com
+3;WH003;Central Fulfillment;Regional;500 Logistics Dr;Chicago;Illinois;60601;USA;25000;true;Bob Operations;+1-312-555-0300;bob.operations@toyplatform.com

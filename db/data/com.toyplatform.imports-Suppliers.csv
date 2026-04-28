@@ -1,0 +1,4 @@
+ID;code;name;country;street;city;state;postalCode;email;phone;isActive;rating
+1;SUP001;Golden Dragon Toys;China;123 Industrial Road;Shenzhen;Guangdong;518000;contact@goldendragontoys.com;+86-755-1234567;true;4.5
+2;SUP002;Happy Kids Manufacturing;China;456 Export Zone;Dongguan;Guangdong;523000;sales@happykids.com;+86-769-7654321;true;4.2
+3;SUP003;Star Bright Toys Co.;China;789 Factory District;Guangzhou;Guangdong;510000;info@starbright.cn;+86-20-9876543;true;4.8

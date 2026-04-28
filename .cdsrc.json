@@ -1,0 +1,23 @@
+{
+  "requires": {
+    "db": {
+      "kind": "hana",
+      "credentials": {
+        "host": "${env:HANA_HOST}",
+        "port": "${env:HANA_PORT}",
+        "user": "${env:HANA_USER}",
+        "password": "${env:HANA_PASSWORD}",
+        "schema": "${env:HANA_SCHEMA}"
+      }
+    },
+    "auth": {
+      "kind": "xsuaa"
+    }
+  },
+  "hana": {
+    "deploy-format": "hdbtable"
+  },
+  "odata": {
+    "version": "v4"
+  }
+}

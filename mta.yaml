@@ -1,0 +1,110 @@
+_schema-version: '3.1'
+ID: toy-import-app
+version: 1.0.0
+description: Toy Import and Distribution Platform
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+
+build-parameters:
+  before-all:
+    - builder: custom
+      commands:
+        - npm ci
+        - npx cds build --production
+
+modules:
+  # CAP Service Module
+  - name: toy-import-app-srv
+    type: nodejs
+    path: gen/srv
+    parameters:
+      buildpack: nodejs_buildpack
+      memory: 512M
+      disk-quota: 1024M
+    build-parameters:
+      builder: npm
+    provides:
+      - name: srv-api
+        properties:
+          srv-url: ${default-url}
+    requires:
+      - name: toy-import-app-db
+      - name: toy-import-app-uaa
+      - name: toy-import-app-destination
+      - name: toy-import-app-logs
+
+  # Database Deployer Module
+  - name: toy-import-app-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: toy-import-app-db
+
+  # App Router Module
+  - name: toy-import-app-approuter
+    type: approuter.nodejs
+    path: app/
+    parameters:
+      memory: 256M
+      disk-quota: 512M
+    requires:
+      - name: toy-import-app-uaa
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api
+          url: ~{srv-url}
+          forwardAuthToken: true
+      - name: toy-import-app-html5-repo-runtime
+
+resources:
+  # HANA HDI Container
+  - name: toy-import-app-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
+    properties:
+      hdi-container-name: ${service-name}
+
+  # XSUAA Service
+  - name: toy-import-app-uaa
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: xsuaa
+      service-plan: application
+      path: ./xs-security.json
+      config:
+        xsappname: toy-import-app-${space}
+        tenant-mode: dedicated
+
+  # Destination Service
+  - name: toy-import-app-destination
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: destination
+      service-plan: lite
+
+  # HTML5 Application Repository Runtime
+  - name: toy-import-app-html5-repo-runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime
+
+  # HTML5 Application Repository Host
+  - name: toy-import-app-html5-repo-host
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-host
+
+  # Application Logging
+  - name: toy-import-app-logs
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: application-logs
+      service-plan: lite

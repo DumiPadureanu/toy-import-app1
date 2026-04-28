@@ -1,0 +1,16 @@
+{
+  "server": {
+    "port": 4004
+  },
+  "db": {
+    "kind": "sql",
+    "credentials": {
+      "database": ":memory:"
+    }
+  },
+  "features": {
+    "fileUploads": false,
+    "notifications": false,
+    "realTimeTracking": false
+  }
+}

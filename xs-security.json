@@ -1,0 +1,57 @@
+{
+  "xsappname": "toy-import-app",
+  "tenant-mode": "dedicated",
+  "description": "Security descriptor for Toy Import App",
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "Administrator"
+    },
+    {
+      "name": "$XSAPPNAME.Manager",
+      "description": "Manager"
+    },
+    {
+      "name": "$XSAPPNAME.User",
+      "description": "Regular User"
+    },
+    {
+      "name": "$XSAPPNAME.Viewer",
+      "description": "Read-only Viewer"
+    }
+  ],
+  "attributes": [],
+  "role-templates": [
+    {
+      "name": "Administrator",
+      "description": "Full system access",
+      "scope-references": [
+        "$XSAPPNAME.Admin"
+      ]
+    },
+    {
+      "name": "Manager",
+      "description": "Manage orders and inventory",
+      "scope-references": [
+        "$XSAPPNAME.Manager",
+        "$XSAPPNAME.User",
+        "$XSAPPNAME.Viewer"
+      ]
+    },
+    {
+      "name": "User",
+      "description": "Create and view own data",
+      "scope-references": [
+        "$XSAPPNAME.User",
+        "$XSAPPNAME.Viewer"
+      ]
+    },
+    {
+      "name": "Viewer",
+      "description": "Read-only access",
+      "scope-references": [
+        "$XSAPPNAME.Viewer"
+      ]
+    }
+  ]
+}
