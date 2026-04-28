@@ -1,6 +1,7 @@
 namespace com.toyplatform.locations;
 
-using { cuid, managed } from '../common';
+using { cuid, managed } from '@sap/cds/common';
+using { com.toyplatform.carriers.Carriers as Carriers } from './carriers';
 
 /**
  * Geofences - geographic boundaries for tracking and alerts
@@ -41,7 +42,7 @@ entity DeliveryZones : cuid, managed {
   zoneCode       : String(50);
   
   // Service parameters
-  defaultCarrier : Association to com.toyplatform.carriers.Carriers;
+  defaultCarrier : Association to Carriers;
   standardDeliveryDays : Integer;
   cutoffTime     : Time; // Order cutoff for same-day processing
   

@@ -1,9 +1,9 @@
 namespace com.toyplatform.orders;
 
-using { cuid, managed, OrderStatus } from '../common';
-using { Currency } from '@sap/cds/common';
-using { Customers } from '../customers';
-using { Products } from '../inventory';
+using { cuid, managed, Currency } from '@sap/cds/common';
+using { com.toyplatform.OrderStatus as OrderStatus } from './common';
+using { com.toyplatform.customers.Customers as Customers } from './customers';
+using { com.toyplatform.inventory.Products as Products } from './inventory';
 
 /**
  * Orders - customer orders

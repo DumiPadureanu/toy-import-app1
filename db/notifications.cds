@@ -1,6 +1,6 @@
 namespace com.toyplatform.notifications;
 
-using { cuid, managed } from '../common';
+using { cuid, managed } from '@sap/cds/common';
 
 /**
  * Notification Templates - reusable notification templates

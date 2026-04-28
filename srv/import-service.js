@@ -1,8 +1,9 @@
 const cds = require('@sap/cds');
+const { SELECT, INSERT, UPDATE } = cds.ql;
 
 module.exports = class ImportService extends cds.ApplicationService {
   async init() {
-    const { Suppliers, Shipments, ShipmentItems, ShipmentEvents, ImportDocuments } = this.entities;
+    const { Shipments, ShipmentEvents } = this.entities;
 
     // CRUD handlers
     this.before('CREATE', Shipments, async (req) => {
@@ -16,7 +17,7 @@ module.exports = class ImportService extends cds.ApplicationService {
       }
     });
 
-    this.after('READ', Shipments, async (shipments, req) => {
+    this.after('READ', Shipments, async (shipments, _req) => {
       // Enrich shipment data if needed
       if (Array.isArray(shipments)) {
         for (const shipment of shipments) {
@@ -86,7 +87,7 @@ module.exports = class ImportService extends cds.ApplicationService {
       return await SELECT.from(Shipments).where({ supplier_ID: supplierID });
     });
 
-    this.on('getOverdueShipments', async (req) => {
+    this.on('getOverdueShipments', async (_req) => {
       const today = new Date().toISOString().split('T')[0];
       return await SELECT.from(Shipments).where({
         status: { in: ['PENDING', 'IN_TRANSIT'] },

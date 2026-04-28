@@ -1,9 +1,9 @@
 namespace com.toyplatform.views;
 
-using { com.toyplatform.orders.Orders } from '../orders';
-using { com.toyplatform.deliveries.Deliveries } from '../deliveries';
-using { com.toyplatform.inventory.InventoryLevels } from '../inventory';
-using { com.toyplatform.imports.Shipments } from '../imports';
+using { com.toyplatform.orders.Orders } from './orders';
+using { com.toyplatform.deliveries.Deliveries } from './deliveries';
+using { com.toyplatform.inventory.InventoryLevels } from './inventory';
+using { com.toyplatform.imports.Shipments } from './imports';
 
 /**
  * Order Analytics View - aggregated order statistics

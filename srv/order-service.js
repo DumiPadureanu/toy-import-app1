@@ -1,8 +1,9 @@
 const cds = require('@sap/cds');
+const { SELECT, INSERT, UPDATE } = cds.ql;
 
 module.exports = class OrderService extends cds.ApplicationService {
   async init() {
-    const { Orders, OrderItems, OrderNotes } = this.entities;
+    const { Orders, OrderNotes } = this.entities;
 
     this.before('CREATE', Orders, async (req) => {
       if (!req.data.orderNumber) {
@@ -43,7 +44,7 @@ module.exports = class OrderService extends cds.ApplicationService {
     });
 
     this.on('processPayment', async (req) => {
-      const { orderID, paymentMethod, paymentReference } = req.data;
+      const { orderID, paymentMethod } = req.data;
       await UPDATE(Orders).set({
         paymentStatus: 'Paid',
         paymentMethod,

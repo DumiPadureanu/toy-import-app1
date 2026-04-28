@@ -1,7 +1,8 @@
 namespace com.toyplatform.imports;
 
-using { cuid, managed, Address, ContactInfo, ShipmentStatus } from '../common';
-using { Currency } from '@sap/cds/common';
+using { cuid, managed, Currency } from '@sap/cds/common';
+using { com.toyplatform.Address as Address, com.toyplatform.ContactInfo as ContactInfo, com.toyplatform.ShipmentStatus as ShipmentStatus } from './common';
+using { com.toyplatform.inventory.Products as Products } from './inventory';
 
 /**
  * Supplier entity - manages toy suppliers (primarily from China)
@@ -62,7 +63,7 @@ entity Shipments : cuid, managed {
  */
 entity ShipmentItems : cuid {
   shipment      : Association to Shipments;
-  product       : Association to com.toyplatform.inventory.Products;
+  product       : Association to Products;
   quantity      : Integer not null;
   unitCost      : Decimal(15, 2);
   totalCost     : Decimal(15, 2);

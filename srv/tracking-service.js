@@ -1,4 +1,5 @@
 const cds = require('@sap/cds');
+const { SELECT, INSERT } = cds.ql;
 
 module.exports = class TrackingService extends cds.ApplicationService {
   async init() {
@@ -89,7 +90,7 @@ module.exports = class TrackingService extends cds.ApplicationService {
       };
     });
 
-    this.on('getActiveDeliveriesMap', async (req) => {
+    this.on('getActiveDeliveriesMap', async (_req) => {
       const activeDeliveries = await SELECT.from(Deliveries).where({
         status: { in: ['IN_TRANSIT', 'OUT_FOR_DELIVERY'] }
       });

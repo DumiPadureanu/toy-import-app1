@@ -1,7 +1,8 @@
 namespace com.toyplatform.carriers;
 
-using { cuid, managed, ContactInfo } from '../common';
-using { Currency } from '@sap/cds/common';
+using { cuid, managed, Currency } from '@sap/cds/common';
+using { com.toyplatform.ContactInfo as ContactInfo } from './common';
+using { com.toyplatform.deliveries.Deliveries as Deliveries } from './deliveries';
 
 /**
  * Carriers - shipping and logistics companies
@@ -29,7 +30,7 @@ entity Carriers : cuid, managed {
   
   // Associations
   rates          : Composition of many CarrierRates on rates.carrier = $self;
-  deliveries     : Association to many com.toyplatform.deliveries.Deliveries on deliveries.carrier = $self;
+  deliveries     : Association to many Deliveries on deliveries.carrier = $self;
 }
 
 /**

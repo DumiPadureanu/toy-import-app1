@@ -1,6 +1,7 @@
 namespace com.toyplatform.users;
 
-using { cuid, managed, Status } from '../common';
+using { cuid, managed } from '@sap/cds/common';
+using { com.toyplatform.Status as Status } from './common';
 
 /**
  * Users - system users

@@ -1,4 +1,5 @@
 const cds = require('@sap/cds');
+const { SELECT, INSERT, UPDATE } = cds.ql;
 
 module.exports = class CustomerService extends cds.ApplicationService {
   async init() {

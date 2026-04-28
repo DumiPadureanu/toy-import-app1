@@ -1,7 +1,7 @@
 namespace com.toyplatform.inventory;
 
-using { cuid, managed, StockMovementType } from '../common';
-using { Currency } from '@sap/cds/common';
+using { cuid, managed, Currency } from '@sap/cds/common';
+using { com.toyplatform.StockMovementType as StockMovementType } from './common';
 
 /**
  * Product Categories - hierarchical product classification

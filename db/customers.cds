@@ -1,6 +1,8 @@
 namespace com.toyplatform.customers;
 
-using { cuid, managed, Address, ContactInfo } from '../common';
+using { cuid, managed } from '@sap/cds/common';
+using { com.toyplatform.Address as Address, com.toyplatform.ContactInfo as ContactInfo } from './common';
+using { com.toyplatform.orders.Orders as Orders } from './orders';
 
 /**
  * Customers - toy buyers/retailers
@@ -33,7 +35,7 @@ entity Customers : cuid, managed {
   // Associations
   addresses      : Composition of many CustomerAddresses on addresses.customer = $self;
   contacts       : Composition of many CustomerContacts on contacts.customer = $self;
-  orders         : Association to many com.toyplatform.orders.Orders on orders.customer = $self;
+  orders         : Association to many Orders on orders.customer = $self;
 }
 
 /**

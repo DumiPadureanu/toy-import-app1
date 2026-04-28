@@ -1,4 +1,5 @@
 const cds = require('@sap/cds');
+const { SELECT, INSERT, UPDATE } = cds.ql;
 
 module.exports = class NotificationService extends cds.ApplicationService {
   async init() {
@@ -62,7 +63,7 @@ module.exports = class NotificationService extends cds.ApplicationService {
     });
 
     this.on('sendBulkNotifications', async (req) => {
-      const { templateCode, recipients } = req.data;
+      const { recipients } = req.data;
       // TODO: Implement bulk sending
       return {
         totalSent: recipients.length,
@@ -85,7 +86,7 @@ module.exports = class NotificationService extends cds.ApplicationService {
       });
     });
 
-    this.on('getFailedNotifications', async (req) => {
+    this.on('getFailedNotifications', async (_req) => {
       return await SELECT.from(Notifications).where({ status: 'Failed' });
     });
 

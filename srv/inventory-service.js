@@ -1,4 +1,5 @@
 const cds = require('@sap/cds');
+const { SELECT, INSERT, UPDATE } = cds.ql;
 
 module.exports = class InventoryService extends cds.ApplicationService {
   async init() {
@@ -12,7 +13,7 @@ module.exports = class InventoryService extends cds.ApplicationService {
       }
     });
 
-    this.after('READ', InventoryLevels, async (levels, req) => {
+    this.after('READ', InventoryLevels, async (levels, _req) => {
       // Calculate available quantity
       if (Array.isArray(levels)) {
         for (const level of levels) {
@@ -184,11 +185,11 @@ module.exports = class InventoryService extends cds.ApplicationService {
       const { warehouseID } = req.data;
 
       const query = SELECT.from(Products, p => {
-        p`.*`,
+        p`.*`;
         p.inventoryLevels(l => {
-          l.quantityAvailable,
-          l.quantityOnHand
-        }).where({ warehouse_ID: warehouseID })
+          l.quantityAvailable;
+          l.quantityOnHand;
+        }).where({ warehouse_ID: warehouseID });
       }).where`exists inventoryLevels[quantityAvailable <= reorderLevel]`;
 
       return await cds.run(query);

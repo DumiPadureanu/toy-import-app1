@@ -4,8 +4,7 @@ module.exports = class AnalyticsService extends cds.ApplicationService {
   async init() {
     // Analytics service is read-only, all computed in functions
 
-    this.on('getSalesDashboard', async (req) => {
-      const { startDate, endDate } = req.data;
+    this.on('getSalesDashboard', async (_req) => {
       // TODO: Implement dashboard calculations
       return {
         totalRevenue: 0,
@@ -16,7 +15,7 @@ module.exports = class AnalyticsService extends cds.ApplicationService {
       };
     });
 
-    this.on('getInventoryDashboard', async (req) => {
+    this.on('getInventoryDashboard', async (_req) => {
       // TODO: Implement inventory dashboard
       return {
         totalProducts: 0,
@@ -27,8 +26,7 @@ module.exports = class AnalyticsService extends cds.ApplicationService {
       };
     });
 
-    this.on('getDeliveryDashboard', async (req) => {
-      const { startDate, endDate } = req.data;
+    this.on('getDeliveryDashboard', async (_req) => {
       // TODO: Implement delivery dashboard
       return {
         totalDeliveries: 0,
@@ -40,8 +38,7 @@ module.exports = class AnalyticsService extends cds.ApplicationService {
       };
     });
 
-    this.on('getImportDashboard', async (req) => {
-      const { startDate, endDate } = req.data;
+    this.on('getImportDashboard', async (_req) => {
       // TODO: Implement import dashboard
       return {
         totalShipments: 0,

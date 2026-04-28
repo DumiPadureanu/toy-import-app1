@@ -3,7 +3,8 @@ const cds = require('@sap/cds');
 module.exports = class UploadService extends cds.ApplicationService {
   async init() {
     this.on('uploadImportDocument', async (req) => {
-      const { shipmentID, documentType, fileName, fileSize, mimeType, fileContent } = req.data;
+      const { shipmentID, fileName } = req.data;
+      // const { documentType, fileSize, mimeType, fileContent } = req.data; // TODO: Use these when implementing
       
       // TODO: Implement actual file storage (S3, Azure Blob, etc.)
       const fileUrl = `/files/imports/${shipmentID}/${fileName}`;
@@ -19,7 +20,8 @@ module.exports = class UploadService extends cds.ApplicationService {
     });
 
     this.on('uploadProofOfDelivery', async (req) => {
-      const { deliveryID, fileType, fileName, fileContent } = req.data;
+      const { deliveryID, fileType, fileName } = req.data;
+      // const { fileContent } = req.data; // TODO: Use when implementing file storage
       
       // TODO: Implement file storage
       const fileUrl = `/files/deliveries/${deliveryID}/${fileType}/${fileName}`;
@@ -32,7 +34,8 @@ module.exports = class UploadService extends cds.ApplicationService {
     });
 
     this.on('uploadProductImage', async (req) => {
-      const { productID, imageType, fileName, fileContent } = req.data;
+      const { productID, imageType, fileName } = req.data;
+      // const { fileContent } = req.data; // TODO: Use when implementing image storage and optimization
       
       // TODO: Implement file storage and image optimization
       const imageUrl = `/files/products/${productID}/${imageType}/${fileName}`;
@@ -44,14 +47,14 @@ module.exports = class UploadService extends cds.ApplicationService {
       };
     });
 
-    this.on('getFile', async (req) => {
-      const { fileUrl } = req.data;
+    this.on('getFile', async (_req) => {
+      // const { fileUrl } = req.data; // TODO: Use when implementing file retrieval
       // TODO: Implement file retrieval from storage
       return null;
     });
 
-    this.on('deleteFile', async (req) => {
-      const { fileUrl } = req.data;
+    this.on('deleteFile', async (_req) => {
+      // const { fileUrl } = req.data; // TODO: Use when implementing file deletion
       // TODO: Implement file deletion
       return true;
     });

@@ -1,9 +1,10 @@
 namespace com.toyplatform.deliveries;
 
-using { cuid, managed, DeliveryStatus, Address } from '../common';
-using { Orders } from '../orders';
-using { Warehouses } from '../inventory';
-using { Carriers } from '../carriers';
+using { cuid, managed } from '@sap/cds/common';
+using { com.toyplatform.DeliveryStatus as DeliveryStatus, com.toyplatform.Address as Address } from './common';
+using { com.toyplatform.orders.Orders as Orders, com.toyplatform.orders.OrderItems as OrderItems } from './orders';
+using { com.toyplatform.inventory.Warehouses as Warehouses } from './inventory';
+using { com.toyplatform.carriers.Carriers as Carriers } from './carriers';
 
 /**
  * Deliveries - shipment to customers
@@ -55,7 +56,7 @@ entity Deliveries : cuid, managed {
  */
 entity DeliveryItems : cuid {
   delivery       : Association to Deliveries not null;
-  orderItem      : Association to com.toyplatform.orders.OrderItems not null;
+  orderItem      : Association to OrderItems not null;
   
   quantity       : Integer not null;
   packaging      : String(100);
